@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariana Tejido Artesanal - Boutique Infantil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wool: {
+                            50: '#FAF8F5', 100: '#F4EFEA', 200: '#E7DDD3', 300: '#D5C4B3',
+                            400: '#C1A892', 500: '#A98970', 600: '#8E6F57', 700: '#725642',
+                            800: '#584131', 900: '#3D2D22',
+                        },
+                        terracotta: { 500: '#D97757', 600: '#C35E3E', 700: '#A3462A' },
+                        sage: { 100: '#E8EFE9', 500: '#829E85', 700: '#57725A' },
+                        mpBlue: { 500: '#009EE3', 600: '#0083BD' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .serif-title { font-family: 'Playfair Display', serif; }
+        .bg-pattern {
+            background-color: #FAF8F5;
+            background-image: radial-gradient(#C1A892 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+        }
+        .product-card:hover img { transform: scale(1.05); }
+        .cart-bounce { animation: bounce 0.5s ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    </style>
+</head>
+<body class="bg-wool-50 text-wool-900 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-terracotta-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-wool-50/90 backdrop-blur-md border-b border-wool-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="https://i.ibb.co/C3ZyBwC4/logo-tienda.jpg" alt="Logo Mariana" class="w-12 h-12 object-contain rounded-full border border-wool-300 shadow-sm">
+                    <div class="flex flex-col">
+                        <span class="text-xl sm:text-2xl font-bold tracking-tight text-wool-900 serif-title leading-none">Mariana</span>
+                        <span class="text-[10px] uppercase tracking-widest text-terracotta-600 font-semibold">Tejido Artesanal</span>
+                    </div>
+                </a>
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#inicio" class="text-wool-800 hover:text-terracotta-600 transition-colors">Inicio</a>
+                    <a href="#catalogo" class="text-wool-800 hover:text-terracotta-600 transition-colors">Catálogo</a>
+                    <a href="#pagos-envios" class="text-wool-800 hover:text-terracotta-600 transition-colors">Envíos</a>
+                    <a href="#contacto" class="text-wool-800 hover:text-terracotta-600 transition-colors">Contacto</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative p-2 text-wool-800 hover:text-terracotta-600 transition-colors" title="Mi Carrito">
+                        <i class="fa-solid fa-basket-shopping text-2xl"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-terracotta-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                    </button>
+                    <!-- BOTÓN DE PANEL ELIMINADO PARA PRIVACIDAD DEL CLIENTE -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="py-12 md:py-20 bg-pattern border-b border-wool-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center md:text-left">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-500/10 border border-terracotta-500/20 text-terracotta-700 text-xs font-semibold uppercase">
+                        <i class="fa-solid fa-heart text-terracotta-500"></i> Hecho a mano con amor
+                    </span>
+                    <h1 class="text-4xl sm:text-6xl font-bold text-wool-900 serif-title leading-tight">Prendas únicas para los más pequeños.</h1>
+                    <p class="text-lg text-wool-700 max-w-xl mx-auto md:mx-0">Ropa artesanal tejida con hilos hipoalergénicos para bebés y niños de 0 a 4 años. Calidad, suavidad y diseño exclusivo.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#catalogo" class="px-8 py-3.5 rounded-xl bg-terracotta-600 hover:bg-terracotta-700 text-white font-medium text-center shadow-lg transition-all transform hover:-translate-y-1">Ver Catálogo</a>
+                        <a href="https://wa.me/5492932513030" target="_blank" class="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-center flex items-center justify-center gap-2 shadow-lg transition-all transform hover:-translate-y-1">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Consultas
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-terracotta-200 rounded-full blur-3xl opacity-30"></div>
+                        <img src="https://i.ibb.co/C3ZyBwC4/logo-tienda.jpg" alt="Mariana Tejido Artesanal" class="relative w-80 h-80 object-cover rounded-full border-8 border-white shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section class="bg-wool-900 text-white py-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center gap-6 text-center">
+            <div class="space-y-4 max-w-2xl">
+                <p class="text-lg font-medium text-wool-100 serif-title">¡Queremos estar conectados contigo!</p>
+                <p class="text-sm text-wool-400 leading-relaxed">
+                    No dejes de comentar en nuestras redes sociales, ya que es muy importante para nosotros; sus comentarios y opiniones muestran nuestro compromiso con cada cliente y nos ayudan a seguir creciendo con amor.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://www.facebook.com/mariana.coronel.338" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-xl text-xs font-bold hover:bg-blue-700 transition-all shadow-md">
+                    <i class="fa-brands fa-facebook"></i> Facebook: Mariana Coronel
+                </a>
+                <a href="https://www.instagram.com/mariana.tejidosartesanales" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-xs font-bold hover:opacity-90 transition-all shadow-md">
+                    <i class="fa-brands fa-instagram"></i> Instagram: @mariana.tejidosartesanales
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalogo" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-wool-900 serif-title mb-4">Nuestro Catálogo</h2>
+                <div class="flex flex-wrap justify-center gap-2 mb-8">
+                    <button onclick="filterProducts('todos')" class="filter-btn active px-4 py-2 rounded-full text-xs font-bold border transition-all bg-terracotta-600 text-white border-terracotta-600" data-category="todos">Todos</button>
+                    <button onclick="filterProducts('bebe')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-wool-300 text-wool-700 hover:border-terracotta-500 transition-all" data-category="bebe">Bebés (0-12m)</button>
+                    <button onclick="filterProducts('hilo')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-wool-300 text-wool-700 hover:border-terracotta-500 transition-all" data-category="hilo">Hilo (Verano)</button>
+                    <button onclick="filterProducts('lana')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-wool-300 text-wool-700 hover:border-terracotta-500 transition-all" data-category="lana">Lana (Invierno)</button>
+                </div>
+            </div>
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- Pagos y Envíos -->
+    <section id="pagos-envios" class="py-16 bg-wool-100 border-y border-wool-200">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl border border-wool-200 shadow-sm flex items-start gap-4">
+                <div class="p-3 bg-mpBlue-500 text-white rounded-2xl"><i class="fa-solid fa-credit-card text-xl"></i></div>
+                <div>
+                    <h3 class="font-bold text-wool-900 mb-2">Mercado Pago</h3>
+                    <p class="text-sm text-wool-600">Aceptamos transferencias CVU, Alias y todas las tarjetas de crédito/débito.</p>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl border border-wool-200 shadow-sm flex items-start gap-4">
+                <div class="p-3 bg-terracotta-600 text-white rounded-2xl"><i class="fa-solid fa-truck-fast text-xl"></i></div>
+                <div>
+                    <h3 class="font-bold text-wool-900 mb-2">Envíos y Despacho</h3>
+                    <ul class="text-sm text-wool-600 space-y-2 mt-2">
+                        <li class="flex justify-between"><span>• Cadete / Moto Local:</span> <strong class="text-wool-900">$3.500 ARS</strong></li>
+                        <li class="flex justify-between"><span>• Correo Argentino (Sucursal):</span> <strong class="text-wool-900">$8.500 ARS</strong></li>
+                        <li class="flex justify-between"><span>• Correo Argentino (Domicilio):</span> <strong class="text-wool-900">$12.000 ARS</strong></li>
+                    </ul>
+                    <p class="text-[11px] text-wool-400 mt-3 italic">Despachamos en 24-48 hs tras confirmación de pago.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-wool-900 text-wool-100 py-12 relative">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <p class="text-2xl font-bold serif-title text-white">Mariana Tejido Artesanal</p>
+            <p class="text-sm text-wool-400">WhatsApp: +54 9 2932 513030 | Email: ludmilacoronel@hotmail.com</p>
+            <div class="pt-4 text-xs text-wool-600 uppercase tracking-widest">© 2026 República Argentina</div>
+        </div>
+        <!-- ACCESO SECRETO AL PANEL (Invisible para el cliente) -->
+        <div onclick="openAdminModal()" class="absolute bottom-0 right-0 w-4 h-4 cursor-default opacity-0"></div>
+    </footer >
+
+    <!-- Carrito Lateral -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center bg-wool-50">
+                <h3 class="text-xl font-bold serif-title text-wool-900">Mi Pedido</h3>
+                <button onclick="toggleCart()" class="text-wool-500 hover:text-wool-900"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+            <div class="p-6 border-t bg-wool-50 space-y-4">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-wool-600 uppercase">Método de Envío:</label>
+                    <select id="shipping-select" onchange="updateCartUI()" class="w-full p-2.5 rounded-xl border border-wool-300 text-sm bg-white focus:ring-2 focus:ring-terracotta-500 outline-none">
+                        <option value="0">Retiro Personal (Gratis)</option>
+                        <option value="3500">Cadete Local ($3.500)</option>
+                        <option value="8500">Correo Argentino Sucursal ($8.500)</option>
+                        <option value="12000">Correo Argentino Domicilio ($12.000)</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center text-lg font-bold text-wool-900 pt-2 border-t border-wool-200">
+                    <span>Total Final:</span>
+                    <span id="cart-total">$0 ARS</span>
+                </div>
+                <button onclick="sendCartWhatsApp()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Enviar Pedido por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div >
+
+    <!-- Admin Panel -->
+    <div id="admin-modal" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div onclick="closeAdminModal()" class="absolute inset-0 bg-wool-900/60 backdrop-blur-sm"></div>
+        <div class="relative max-w-2xl mx-auto my-12 px-4">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-wool-200 max-h-[85vh] flex flex-col">
+                <div class="p-6 bg-wool-900 text-white flex justify-between items-center">
+                    <h3 id="admin-modal-title" class="text-lg font-bold">Panel Vendedor</h3>
+                    <button onclick="closeAdminModal()" class="text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="p-6 space-y-6 overflow-y-auto flex-1">
+                    <div id="admin-auth-section" class="space-y-3">
+                        <p class="text-xs text-wool-600">Clave (admin123):</p>
+                        <div class="flex gap-2">
+                            <input type="password" id="admin-pass-input" class="flex-1 px-3 py-2 rounded-xl border text-sm">
+                            <button onclick="verifyAdminPass()" class="px-4 py-2 bg-terracotta-600 text-white rounded-xl text-xs font-bold">Ingresar</button>
+                        </div>
+                    </div>
+                    <div id="admin-content-section" class="hidden space-y-6">
+                        <form onsubmit="saveProduct(event)" class="p-4 bg-wool-100 border border-wool-300 rounded-2xl space-y-3">
+                            <h4 id="form-title" class="font-bold text-sm text-wool-900">Agregar Nueva Prenda</h4>
+                            <input type="hidden" id="edit-id" value="">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="text" id="new-title" placeholder="Título" required class="text-xs p-2.5 rounded-lg border bg-white">
+                                <input type="number" id="new-price" placeholder="Precio ARS" required class="text-xs p-2.5 rounded-lg border bg-white">
+                                <select id="new-category" class="text-xs p-2.5 rounded-lg border bg-white">
+                                    <option value="bebe">Bebé (0-12m)</option>
+                                    <option value="hilo">Hilo (Verano)</option>
+                                    <option value="lana">Lana (Invierno)</option>
+                                </select>
+                                <input type="text" id="new-age" placeholder="Talla / Edad" required class="text-xs p-2.5 rounded-lg border bg-white">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold text-wool-600 uppercase">Imagen de la prenda:</label>
+                                <div class="flex flex-col sm:flex-row gap-2">
+                                    <input type="file" id="new-img-file" accept="image/*" class="text-xs p-2 rounded-lg border bg-white w-full">
+                                    <span class="text-xs text-wool-400 self-center">O</span>
+                                    <input type="text" id="new-img-url" placeholder="Pega link de ImgBB" class="text-xs p-2.5 rounded-lg border bg-white w-full">
+                                </div>
+                            </div>
+                            <textarea id="new-desc" placeholder="Descripción..." required class="text-xs p-2.5 rounded-lg border bg-white w-full" rows="2"></textarea>
+                            <button type="submit" id="btn-save" class="w-full py-2.5 bg-terracotta-600 text-white font-bold rounded-xl text-xs">Publicar Prenda</button>
+                        </form>
+                        <div id="admin-products-list" class="space-y-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div >
+
+    <script>
+        const defaultProducts = [
+            { id: 1, title: 'Saco Blanco con Corazones Coloridos', price: 28000, category: 'lana', age: '1 a 4 Años', desc: 'Saco tejido en lana blanca con apliques de corazones multicolor.', img: 'saco-corazones.jpg' },
+            { id: 2, title: 'Set Celeste (Saco, Pantalón y Botitas)', price: 45000, category: 'lana', age: '0 a 12 Meses', desc: 'Conjunto completo celeste con trenzas tejidas a mano.', img: 'set-azul.jpg' },
+            { id: 3, title: 'Set Rosa Jaspeado (Saco y Gorro)', price: 38000, category: 'lana', age: '0 a 2 Años', desc: 'Conjunto en lana matizada rosa y blanco con gorrito a juego.', img: 'set-rosa-jaspeado.jpg' },
+            { id: 4, title: 'Saco Rosa con Gorrito a juego', price: 32000, category: 'lana', age: '0 a 3 Años', desc: 'Saco tejido en rosa sólido con gorro pompon.', img: 'saco-rosa-gorro.jpg' },
+            { id: 5, title: 'Saco Blanco con Volados', price: 26000, category: 'lana', age: '1 a 4 Años', desc: 'Saco elegante blanco con detalles de volados en los hombros.', img: 'saco-volados.jpg' },
+            { id: 6, title: 'Saco Verde Agua con Rayas y Flor', price: 27000, category: 'lana', age: '1 a 4 Años', desc: 'Saco tejido en lana verde agua con rayas blancas en mangas.', img: 'saco-verde-rayas.jpg' },
+            { id: 7, title: 'Manta Estrella Fucsia', price: 34000, category: 'bebe', age: '0 a 12 Meses', desc: 'Saco de dormir en forma de estrella, súper abrigado.', img: 'manta-estrella-fucsia.jpg' },
+            { id: 8, title: 'Manta Estrella Azul Marino', price: 34000, category: 'bebe', age: '0 a 12 Meses', desc: 'Manta envolvente en forma de estrella azul oscuro.', img: 'manta-estrella-azul.jpg' },
+            { id: 9, title: 'Manta Estrella Rosa y Verde', price: 34000, category: 'bebe', age: '0 a 12 Meses', desc: 'Manta temática en rosa con detalles en verde.', img: 'manta-estrella-rosa.jpg' },
+            { id: 10, title: 'Saco Blanco Variegado', price: 26000, category: 'lana', age: '1 a 4 Años', desc: 'Saco tejido con lana de colores suaves mezclados.', img: 'saco-variegado.jpg' },
+            { id: 11, title: 'Saco Verde Teal Matizado', price: 25000, category: 'lana', age: '1 a 4 Años', desc: 'Saco tejido en tono verde azulado con efecto matizado.', img: 'saco-teal.jpg' },
+            { id: 12, title: 'Chaleco Durazno con Cuello de Encaje', price: 24000, category: 'hilo', age: '1 a 3 Años', desc: 'Chaleco en hilo color durazno con cuello blanco calado.', img: 'chaleco-durazno.jpg' },
+            { id: 13, title: 'Chaleco Rosa con Volados y Flores', price: 23000, category: 'hilo', age: '1 a 3 Años', desc: 'Chaleco liviano rosa con detalles de flores bordadas.', img: 'chaleco-rosa.jpg' },
+            { id: 14, title: 'Vestidito Crochet Rosa y Crema', price: 32000, category: 'hilo', age: '1 a 3 Años', desc: 'Vestidito artesanal en hilo, ideal para eventos.', img: 'vestido-rosa.jpg' },
+            { id: 15, title: 'Vestidito Crochet Azul y Crema', price: 32000, category: 'hilo', age: '1 a 3 Años', desc: 'Vestidito tejido en azul y crema con falda calada.', img: 'vestidito-azul.jpg' },
+            { id: 16, title: 'Conjunto Blanco con Flores Rosas', price: 42000, category: 'hilo', age: '0 a 2 Años', desc: 'Set de vestido, saquito y botitas en color blanco y rosa.', img: 'set-blanco-flores.jpg' },
+            { id: 17, title: 'Saco de Hilo Crema y Azul', price: 22000, category: 'hilo', age: '1 a 3 Años', desc: 'Saco liviano de hilo con detalles en azul.', img: 'saco-hilo-azul.jpg' },
+            { id: 18, title: 'Sombrero Sandía', price: 18000, category: 'hilo', age: '1 a 4 Años', desc: 'Gorrito divertido tejido en forma de sandía.', img: 'gorro-sandia.jpg' },
+            { id: 19, title: 'Botitas Negras con Margarita', price: 14000, category: 'bebe', age: '0 a 9 Meses', desc: 'Zapatitos tejidos negros con aplique de margarita.', img: 'botitas-negras.jpg' },
+            { id: 20, title: 'Botitas Rosas y Blancas', price: 12000, category: 'bebe', age: '0 a 9 Meses', desc: 'Zapatitos tejidos en rosa y blanco.', img: 'botitas-rosas.jpg' },
+            { id: 21, title: 'Botitas Blancas en Caja de Regalo', price: 16000, category: 'bebe', age: '0 a 9 Meses', desc: 'Presentación especial de botitas blancas con flores.', img: 'botitas-regalo.jpg' },
+            { id: 22, title: 'Botitas Rosas con Moño', price: 12000, category: 'bebe', age: '0 a 9 Meses', desc: 'Zapatitos rosas con lazos de satén.', img: 'botitas-moño.jpg' },
+        ];
+
+        let products = JSON.parse(localStorage.getItem('mariana_tejidos_v2')) || defaultProducts;
+        let cart = [];
+        let currentFilter = 'todos';
+
+        function saveAndRefresh() {
+            localStorage.setItem('mariana_tejidos_v2', JSON.stringify(products));
+            renderProducts();
+            renderAdminList();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const filtered = currentFilter === 'todos' ? products : products.filter(p => p.category === currentFilter);
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card bg-wool-50 border border-wool-200 rounded-3xl overflow-hidden shadow-sm flex flex-col justify-between transition-all hover:shadow-xl group">
+                    <div class="h-72 overflow-hidden bg-wool-200 relative">
+                        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800'">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-white/90 backdrop-blur text-wool-900 text-[10px] font-bold rounded-full uppercase shadow-sm">${p.age}</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="mb-4">
+                            <h3 class="font-bold text-lg text-wool-900 leading-tight group-hover:text-terracotta-600 transition-colors">${p.title}</h3>
+                            <p class="text-xs text-wool-600 mt-2 line-clamp-2">${p.desc}</p>
+                        </div>
+                        <div class="pt-4 border-t border-wool-200 flex justify-between items-center">
+                            <span class="text-xl font-bold text-wool-900">$${Number(p.price).toLocaleString('es-AR')}</span>
+                            <button onclick="addToCart(${p.id})" class="px-4 py-2 bg-terracotta-600 hover:bg-terracotta-700 text-white rounded-xl text-xs font-bold flex items-center gap-2 transition-all transform active:scale-95">
+                                <i class="fa-solid fa-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-terracotta-600', 'text-white', 'border-terracotta-600');
+                btn.classList.add('border-wool-300', 'text-wool-700');
+            });
+            const activeBtn = document.querySelector(`[data-category="${cat}"]`);
+            activeBtn.classList.remove('border-wool-300', 'text-wool-700');
+            activeBtn.classList.add('bg-terracotta-600', 'text-white', 'border-terracotta-600');
+            renderProducts();
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            cart.push(prod);
+            updateCartUI();
+            const countEl = document.getElementById('cart-count');
+            countEl.classList.add('cart-bounce');
+            setTimeout(() => countEl.classList.remove('cart-bounce'), 500);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items');
+            const count = document.getElementById('cart-count');
+            const totalEl = document.getElementById('cart-total');
+            const shippingCost = Number(document.getElementById('shipping-select').value);
+            
+            count.innerText = cart.length;
+            if(cart.length === 0) {
+                list.innerHTML = `<div class="text-center py-10 text-wool-400"><i class="fa-solid fa-basket-shopping text-4xl mb-3 block"></i> El carrito está vacío</div>`;
+                totalEl.innerText = `$0 ARS`;
+                return;
+            }
+
+            let productSum = 0;
+            list.innerHTML = cart.map((p, index) => {
+                productSum += p.price;
+                return `
+                    <div class="flex items-center gap-4 bg-wool-50 p-3 rounded-2xl border border-wool-200">
+                        <img src="${p.img}" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=100'">
+                        <div class="flex-1">
+                            <p class="text-xs font-bold text-wool-900 line-clamp-1">${p.title}</p>
+                            <p class="text-xs text-terracotta-600 font-bold">$${p.price.toLocaleString('es-AR')}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-2"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
+            
+            const finalTotal = productSum + shippingCost;
+            totalEl.innerText = `$${finalTotal.toLocaleString('es-AR')} ARS`;
+        }
+
+        function toggleCart() { document.getElementById('cart-drawer').classList.toggle('hidden'); }
+
+        function sendCartWhatsApp() {
+            if(cart.length === 0) return alert("El carrito está vacío");
+            
+            const shippingSelect = document.getElementById('shipping-select');
+            const shippingText = shippingSelect.options[shippingSelect.selectedIndex].text;
+            const shippingValue = Number(shippingSelect.value);
+            
+            let message = "Hola Mariana! 👋 Quisiera realizar el siguiente pedido:\n\n";
+            let productSum = 0;
+            
+            cart.forEach((p, i) => {
+                message += `${i+1}. ${p.title} - $${p.price.toLocaleString('es-AR')}\n`;
+                productSum += p.price;
+            });
+            
+            message += `\n📦 *Envío:* ${shippingText} ($${shippingValue.toLocaleString('es-AR')})`;
+            message += `\n💰 *Total Final: $${(productSum + shippingValue).toLocaleString('es-AR')} ARS*`;
+            message += `\n\nPor favor, confirmame disponibilidad y coordinamos el pago y envío. Gracias!`;
+            
+            window.open(`https://wa.me/5492932513030?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function openAdminModal() { 
+            document.getElementById('admin-modal').classList.remove('hidden'); 
+            document.getElementById('admin-auth-section').classList.remove('hidden');
+            document.getElementById('admin-content-section').classList.add('hidden');
+        }
+        
+        function closeAdminModal() { 
+            document.getElementById('admin-modal').classList.add('hidden'); 
+            resetAdminForm(); 
+        }
+        
+        function verifyAdminPass() {
+            if(document.getElementById('admin-pass-input').value === 'admin123') {
+                document.getElementById('admin-auth-section').classList.add('hidden');
+                document.getElementById('admin-content-section').classList.remove('hidden');
+                renderAdminList();
+            } else { alert('Clave incorrecta'); }
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('admin-products-list');
+            list.innerHTML = products.map(p => `
+                <div class="p-3 bg-wool-50 rounded-xl border flex justify-between items-center text-xs">
+                    <div class="flex items-center gap-3">
+                        <img src="${p.img}" class="w-10 h-10 object-cover rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=100'">
+                        <div><p class="font-bold">${p.title}</p><p class="text-terracotta-600">$${p.price}</p></div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editProduct(${p.id})" class="p-2 bg-wool-800 text-white rounded-lg hover:bg-wool-900 transition-colors" title="Editar prenda"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteProduct(${p.id})" class="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function editProduct(id) {
+            const p = products.find(prod => prod.id === id);
+            if(!p) return;
+            document.getElementById('edit-id').value = p.id;
+            document.getElementById('new-title').value = p.title;
+            document.getElementById('new-price').value = p.price;
+            document.getElementById('new-category').value = p.category;
+            document.getElementById('new-age').value = p.age;
+            document.getElementById('new-desc').value = p.desc;
+            document.getElementById('new-img-url').value = p.img;
+            document.getElementById('form-title').innerText = "Editar Prenda Existente";
+            document.getElementById('btn-save').innerText = "Guardar Cambios";
+            document.getElementById('btn-save').classList.replace('bg-terracotta-600', 'bg-wool-800');
+            document.getElementById('admin-content-section').scrollTop = 0;
+        }
+
+        function resetAdminForm() {
+            document.getElementById('edit-id').value = "";
+            document.getElementById('new-title').value = "";
+            document.getElementById('new-price').value = "";
+            document.getElementById('new-age').value = "";
+            document.getElementById('new-desc').value = "";
+            document.getElementById('new-img-url').value = "";
+            document.getElementById('new-img-file').value = "";
+            document.getElementById('form-title').innerText = "Agregar Nueva Prenda";
+            document.getElementById('btn-save').innerText = "Publicar Prenda";
+            document.getElementById('btn-save').classList.replace('bg-wool-800', 'bg-terracotta-600');
+        }
+
+        async function saveProduct(e) {
+            e.preventDefault();
+            const editId = document.getElementById('edit-id').value;
+            const fileInput = document.getElementById('new-img-file');
+            const urlInput = document.getElementById('new-img-url').value;
+            let finalImg = urlInput;
+            if (fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                finalImg = await convertFileToBase64(file);
+            }
+            if (!finalImg) {
+                alert("Por favor, sube una imagen o pega un link.");
+                return;
+            }
+            const productData = {
+                title: document.getElementById('new-title').value,
+                price: Number(document.getElementById('new-price').value),
+                category: document.getElementById('new-category').value,
+                age: document.getElementById('new-age').value,
+                desc: document.getElementById('new-desc').value,
+                img: finalImg
+            };
+            if(editId) {
+                products = products.map(p => p.id == editId ? { ...p, ...productData } : p);
+                alert('¡Prenda actualizada con éxito!');
+            } else {
+                products.unshift({ id: Date.now(), ...productData });
+                alert('¡Prenda agregada con éxito!');
+            }
+            saveAndRefresh();
+            resetAdminForm();
+            e.target.reset();
+        }
+
+        function convertFileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        function deleteProduct(id) {
+            if(confirm('¿Eliminar prenda?')) {
+                products = products.filter(p => p.id !== id);
+                saveAndRefresh();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
